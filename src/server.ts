@@ -1,11 +1,9 @@
-import fastify, { type FastifyInstance } from "fastify";
+import { create_app } from "./app.js";
+import { env } from "./libs/env.config.js";
 
-function create_app(): FastifyInstance {
-    const app = fastify()
+const app = create_app()
 
-    // app.register()
-
-    return app
-}
-
-export { create_app }
+app.listen({ port: env.PORT, host: env.HOST }).then(() => {
+    console.log(`Server is running on port: ${env.PORT}`)
+    console.log(`Acess on url: http://localhost:${env.PORT}/api`)
+})

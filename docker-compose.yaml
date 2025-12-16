@@ -1,0 +1,16 @@
+services:
+  postgres:
+    container_name: "todo_db"
+    image: "bitnami/postgresql:latest"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: todo_db
+
+    volumes:
+      - "todo_data:/bitnami/postgresql"
+
+volumes:
+  todo_data:
