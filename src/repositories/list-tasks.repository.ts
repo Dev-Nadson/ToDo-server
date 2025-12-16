@@ -9,7 +9,7 @@ async function list_tasks_repository({ page, limit }: PaginationType) {
 
     const [count, data] = await Promise.all([
         Knex("tasks").count("* as total").first(),
-        Knex("tasks as t").select("*").limit(limit).offset(offset).where({ "t.deleted_at": null })
+        Knex("tasks as t").select("*").limit(limit).offset(offset).orderBy("t.created_at", "desc")
     ])
 
     const total = Number(count?.total ?? 0)
